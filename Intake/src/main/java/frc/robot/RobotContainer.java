@@ -5,7 +5,8 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.RunIntakeCmd;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -17,12 +18,18 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  //Robot subsystems and commands are defined here...
+  public static final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  public static final RunIntakeCmd m_runIntakeCmd = new RunIntakeCmd();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_runIntakeCmd.addRequirements(m_intakeSubsystem);
+
     // Configure the trigger bindings
     configureBindings();
   }
@@ -38,6 +45,8 @@ public class RobotContainer {
    */
   private void configureBindings() 
   {
+    m_driverController.b()
+      .whileTrue(new RunIntakeCmd());
   }
 
   /**
