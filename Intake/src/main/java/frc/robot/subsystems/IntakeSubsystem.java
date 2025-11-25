@@ -83,10 +83,13 @@ public class IntakeSubsystem extends SubsystemBase {
     //**SmartDasboard messueresData**//
     /** Intake Data */
     SmartDashboard.putNumber("intakeSusbsytem/intakeCurrent", getIntakeCurrent());
+    SmartDashboard.putNumber("intakeSubsystem/intakeEncoder", getIntakeEncoderPosition());
 
     /** Indexer Data */
     SmartDashboard.putNumber("indexerSusbsytem/indexerFollowerCurrent", getIndexerFollowerCurrent());
+    SmartDashboard.putNumber("indexerSubsystem/indexerFollowerEncoder", getIndexerFollowerEncoderPosition());
     SmartDashboard.putNumber("indexerSusbsytem/indexerCurrent", getIndexerCurrent());
+    SmartDashboard.putNumber("indexerSubsystem/indexerEncoder", getIndexerEncoderPosition());
   }
 
   public void runSubsystem(double speed) 
